@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () =>{
+    console.log('State changed');
+};
 
 let state = {
     profilePage:{
@@ -9,7 +11,8 @@ let state = {
         { id: 4, message: 'yo'},
         { id: 5, message: 'yo'},
         { id: 6, message: 'yo'}
-      ], 
+      ],
+      newPostText: 'it-kamasutra.com'
     },
     dialogsPage:{
         dialogs: [
@@ -28,6 +31,7 @@ let state = {
         { id: 5, message: 'yo'},
         { id: 6, message: 'yo'}
         ],
+        newMessageText: 'best-network'
     },
     // sidebar:{
     //     friends:[
@@ -39,15 +43,42 @@ let state = {
     
 };
 
-export let addPost = (postMessage) => {
+window.state = state;
+
+export const addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0
     };
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
     rerenderEntireTree(state);
+}
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state);
+}
+let count = 6;
+export const addMessages = () => {
+    count++;
+    let newMessage = {
+        id: count,
+        message: state.dialogsPage.newMessageText
+    }
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state);
+}
+export const updateNewMessageText = (newText) => {
+    state.dialogsPage.newMessageText = newText;
+    rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) =>{
+    rerenderEntireTree = observer;// observer-наблюдатель
 }
 
 export default state;
