@@ -5,7 +5,6 @@ import Navbar  from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {Route} from 'react-router-dom';
-import { addPost } from './redux/state';
 
 function App(props) {
 
@@ -20,12 +19,15 @@ function App(props) {
                                   profilePage={props.state.profilePage} 
                                   dispatch={props.dispatch}/>}/>
             <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}
-                                    addMessages={props.addMessages}
-                                    updateNewMessageText={props.updateNewMessageText}/>}/>
-            <Route path="/news" render={() => <Profile profilePage={props.state.profilePage}/>}/>
-            <Route path="/music" render={() => <Profile profilePage={props.state.profilePage}/>}/>
-            <Route path="/settings" render={() => <Profile profilePage={props.state.profilePage}/>}/>
-            <Route path="/friends" render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                                    dispatch={props.dispatch}/>}/>
+            <Route path="/news" render={() => <Profile profilePage={props.state.profilePage}
+                                                        dispatch={props.dispatch}/>}/>
+            <Route path="/music" render={() => <Profile profilePage={props.state.profilePage}
+                                                        dispatch={props.dispatch}/>}/>
+            <Route path="/settings" render={() => <Profile profilePage={props.state.profilePage}
+                                                            dispatch={props.dispatch}/>}/>
+            <Route path="/friends" render={() => <Profile profilePage={props.state.profilePage}
+                                                          dispatch={props.dispatch}/>}/>
           </div>
       </div>
   );

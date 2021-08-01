@@ -1,3 +1,5 @@
+const addPost = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 let store = {
     _state:{
             profilePage:{
@@ -64,35 +66,63 @@ let store = {
     //     this._state.profilePage.newPostText = newText
     //     this._callSubscriber(this._state);
     // },
-    addMessages() {
-        this.count++;
-        let newMessage = {
-            id: this.count,
-            message: this._state.dialogsPage.newMessageText
-        }
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessageText = newText;
-        this._callSubscriber(this._state);
-    },
+    // addMessages() {
+    //     this.count++;
+    //     let newMessage = {
+    //         id: this.count,
+    //         message: this._state.dialogsPage.newMessageText
+    //     }
+    //     this._state.dialogsPage.messages.push(newMessage);
+    //     this._state.dialogsPage.newMessageText = '';
+    //     this._callSubscriber(this._state);
+    // },
+    // updateNewMessageText(newText) {
+    //     this._state.dialogsPage.newMessageText = newText;
+    //     this._callSubscriber(this._state);
+    // },
     dispatch(action){
-        if(action.type === 'ADD-POST'){
-            let newPost = {
+        if(action.type === addPost){
+            if(action.status === 'message'){
+                this.count++;
+                let newMessage = {
+                    id: this.count,
+                    message: this._state.dialogsPage.newMessageText
+                }
+                this._state.dialogsPage.messages.push(newMessage);
+                this._state.dialogsPage.newMessageText = '';
+                this._callSubscriber(this._state);
+            }else{
+               let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
                 likesCount: 0
-            };
-        
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
+                }; 
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = '';
+                this._callSubscriber(this._state);
+            }
+        }else if(action.type === UPDATE_NEW_POST_TEXT){
+            if(action.status === 'message'){
+                this._state.dialogsPage.newMessageText = action.newText;
+                this._callSubscriber(this._state);
+            }else{
+               this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state); 
+            }
         }
+    }
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: addPost
+    }
+}
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
     }
 }
 
