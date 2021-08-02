@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from '../../redux/dialogs_reducer';
 
 
 const Dialogs = (props) => {
@@ -15,15 +15,14 @@ const Dialogs = (props) => {
         return <Message message={message.message}/>
     })
     
-    let newMessageElement = React.createRef();
 
     const addTxt = () => {
-        props.dispatch({type: 'ADD-POST', status: 'message'});
+        props.dispatch(addMessageActionCreator());
     }
-    const onMessageChange = () => {
-        let text = newMessageElement.current.value;
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', status: 'message',
-        newText: text});
+    const onMessageChange = (e) => {
+        let text = e.target.value;
+        let action = updateNewMessageTextActionCreator(text)
+        props.dispatch(action);
     }
     console.log(props);
     return(
@@ -34,7 +33,7 @@ const Dialogs = (props) => {
             <div className={classes.messages}>
                 {messagesElements}
                 <div>
-                        <textarea onChange={onMessageChange}  ref={newMessageElement} value={props.state.newMessageText} cols="10" rows="2"></textarea>     
+                        <textarea onChange={onMessageChange}   value={props.state.newMessageText} cols="10" rows="2"></textarea>     
                 </div>
                 <button onClick={addTxt}>add</button>
             </div>
