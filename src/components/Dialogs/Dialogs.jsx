@@ -7,11 +7,11 @@ import Message from './Message/Message';
 const Dialogs = (props) => {
     let state = props.dialogsPage;
     let dialogsElements = state.dialogs.map(dialog => {
-       return <DialogItem id={dialog.id} name={dialog.name} img={dialog.img}/>
+       return <DialogItem id={dialog.id} key={dialog.id} name={dialog.name} img={dialog.img}/>
     })
 
     let messagesElements = state.messages.map(message => {
-        return <Message message={message.message}/>
+        return <Message message={message.message} key={message.id}/>
     })
     
     const addTxt = () => {
