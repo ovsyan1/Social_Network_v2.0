@@ -4,14 +4,7 @@ const SET_USERS = 'SET_USERS';
 let count = 6;
 
 let initialState = {
-    users: [
-        // { id: 1, photoURL: "https://globalkz.biz/usr/person/big-person-15755432141.jpg", followed: false, fullName: 'Dmitrii', status: 'Well done', location: {city: 'Minsk', country: 'Belarus'}},
-        // { id: 2, photoURL: "https://globalkz.biz/usr/person/big-person-15755432141.jpg", followed: true, fullName: "Kyrylo", status: "I'm a boss", location: {city: 'Kyiv', country: 'Ukraine'}},
-        // { id: 3, photoURL: "https://globalkz.biz/usr/person/big-person-15755432141.jpg", followed: true, fullName: 'Vasilii', status: "I'm angry", location: {city: 'Moscow', country: 'Russia'}},
-        // { id: 4, photoURL: "https://globalkz.biz/usr/person/big-person-15755432141.jpg", followed: false, fullName: 'Oksana'},
-        // { id: 5, photoURL: "https://globalkz.biz/usr/person/big-person-15755432141.jpg", followed: false, fullName: 'Stefan'},
-        // { id: 6, photoURL: "https://globalkz.biz/usr/person/big-person-15755432141.jpg", followed: true, fullName: 'Arsen'}
-    ]
+    users: []
 }
 
 const usersReducer = (state = initialState, action) => {

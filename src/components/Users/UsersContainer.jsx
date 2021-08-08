@@ -3,13 +3,13 @@ import Users from './Users';
 import {connect} from 'react-redux';
 import { setUsersAC, followAC, unfollowAC } from '../../redux/users_reducer';
 
-const UsersContainer = () => {
-    return(
-        <div>
-            Users will be here
-        </div>
-    )
-}
+// const UsersContainer = () => {
+//     return(
+//         <div>
+//             Users will be here
+//         </div>
+//     )
+// }
 
 let mapStateToProps = (state) => {
     return {
