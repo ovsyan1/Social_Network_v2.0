@@ -4,3 +4,9 @@
 .btn{
     cursor: pointer;
 }
+.selectedPage{
+    font-weight: bold;
+}
+.box_pagination span{
+    cursor: pointer;
+}
