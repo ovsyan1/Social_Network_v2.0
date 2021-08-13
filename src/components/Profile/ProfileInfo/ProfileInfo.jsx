@@ -13,12 +13,12 @@ const ProfileInfo = (props) => {
                     <div>
                     <Preloader />
                     </div>
-                ava + description
+                ava + description1
                 </div>
             </div>
         )
     }
-    
+
     return (
             <div>
                 <div>
@@ -26,7 +26,11 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={classes.discriptionBlock}>
                     <img src={props.profile.photos.large}></img>
-                ava + description
+                    <div><b>Name:</b> {props.profile.fullName}</div>
+                    <div><b>Status:</b> {props.profile.aboutMe}</div>
+                    <div><b>Insta account:</b> {props.profile.contacts.instagram}</div>
+                    <div><b>Looking for a job: </b>{props.profile.lookingForAJobDescription}</div>
+                    ava + description
                 </div>
             </div>
     )
