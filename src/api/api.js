@@ -14,7 +14,7 @@ const api = 'https://social-network.samuraijs.com/api/1.0/';
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10){
-        return axios.get(api + `users?page=${currentPage}&count=${pageSize}`,
+        return axios.get(`${api}users?page=${currentPage}&count=${pageSize}`,
         {
             withCredentials: true
         })
@@ -23,13 +23,29 @@ export const usersAPI = {
             });
     },
     getProfile(userId = 2){
-       return axios.get(api + `profile/${userId}`).then(response => {
+       return axios.get(`${api}profile/${userId}`).then(response => {
            return response.data
        })
-    }    ,
+    },
     authUser(){
        return axios.get(api + `auth/me`, {
             withCredentials: true
         })
+    },
+    follow(userId){
+       return axios.post(`${api}follow/${userId}`, {},{
+        withCredentials: true,
+        headers: {
+        "API_KEY": "161f90c0-2ef7-4f63-89c5-48dd2a716be7"
+        }
+    })
+    },
+    unfollow(userId){
+     return   axios.delete(`${api}follow/${userId}`, {
+            withCredentials: true,
+            headers: {
+            "API_KEY": "161f90c0-2ef7-4f63-89c5-48dd2a716be7"
+            }
+            })
     }
 }
